@@ -152,24 +152,52 @@ alert('ok')
 		)
 	}
     onConnectionFilterHandler(e){
-         this.setState({
+         
+        const newConnection = this.onFilter(this.state.connections, this.state.input);
+        const connections = this.state.connections;
+        var list = [];
+         for (var i = 0; i < connections.length; i++) {
+                for (var j = 0; j < newConnection.length; j++) {
+                    if(connections[i].name === newConnection[j]){
+                        list = [];
+                        list = connections[i];
+                        console.log(list)
+                        this.setState({
+                          input: e.target.value
+                          
+                        })
+                    }
+                
+               }
+        } 
+        this.setState({
           input: e.target.value
           
         })
-        this.onFilter(this.state.connections, "name", this.state.input)
+
     }
 
-    onFilter(array, prop, value){
-        var filtered = [];
-      for (var i = 0; i < array.length; i++) {
-        if (array[i][prop] === value) {
-            filtered = array[i];
-            return filtered;
+    onFilter(connections, query){
+       var filtered = [];
+      for (var i = 0; i < connections.length; i++) {
+
+        const items = connections[i].name;
+        filtered.push(items);
+       }  
+
+
+         const filterItems = (query) => {
+          return filtered.filter((el) =>
+            el.toLowerCase().indexOf(query.toLowerCase()) > -1
+
+          );
         }
-    }
-    console.log(filtered)
-    return null;    
 
+
+         return   filterItems(query)
+
+        
+       
     }
 
 

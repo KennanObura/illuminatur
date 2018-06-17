@@ -160,7 +160,7 @@ import {
 	render(){
 
 		return(
-		<div>{this.state.isUser ? this.renderMainToolbar() : this.renderUserToolbar()} </div>
+		<div>{this.state.isUser ? this.renderUserToolbar() : this.renderMainToolbar()} </div>
 			
 			)
 	}
